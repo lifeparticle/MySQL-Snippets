@@ -51,6 +51,7 @@ SELECT * FROM students WHERE first_name='Bob' and postcode=23031;
 |  5 | Bob        | Schulistland   | Schulistland   | 895-877-0076x197 | Male   | scbob@opensource.org  | 39405 Nicolas Walk Apt. 041 Kozeychester, AL 20566-8063 |    23031 | 2019-07-15    |
 | 16 | Bob        | Port Thoraland | Port Thoraland | 1-628-108-7615   | Male   | pobob@ycombinator.com | 9256 Price Summit Garrickland, KY 23867                 |    23031 | 2016-02-05    |
 +----+------------+----------------+----------------+------------------+--------+-----------------------+---------------------------------------------------------+----------+---------------+
+2 rows in set (0.00 sec)
 ```
 
 ## 2
@@ -93,6 +94,7 @@ SELECT city, postcode FROM students;
 | North Esta          |    40221 |
 | West Breanabury     |    23031 |
 +---------------------+----------+
+30 rows in set (0.00 sec)
 ```
 
 ## 3
@@ -113,7 +115,7 @@ SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 | Tynan      |
 | Pinkard    |
 | Whale      |
-| Ord        |
+| Ori        |
 | Tagg       |
 | Costerd    |
 | Corrin     |
@@ -122,6 +124,7 @@ SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 | Presdee    |
 | Bedberry   |
 +------------+
+17 rows in set (0.00 sec)
 ```
 
 ## Find the duplicate postcodes
@@ -135,19 +138,280 @@ SELECT (COUNT(postcode)-COUNT(DISTINCT(postcode))) FROM students;
 +---------------------------------------------+
 |                                           4 |
 +---------------------------------------------+
+1 row in set (0.00 sec)
 ```
 
-## 5
+## Find the shortest and longest first names ordered alphabetically.
 
-## 6
+```mysql
+SELECT first_name, LENGTH(first_name) FROM students ORDER BY LENGTH(first_name) DESC, first_name ASC LIMIT 1;
+```
 
-## 7
+```mysql
++-------------+--------------------+
+| first_name  | LENGTH(first_name) |
++-------------+--------------------+
+| Whaplington |                 11 |
++-------------+--------------------+
+1 row in set (0.00 sec)
+```
 
-## 8
+```mysql
+SELECT first_name, LENGTH(first_name) FROM students ORDER BY LENGTH(first_name) ASC, first_name ASC LIMIT 1;
+```
 
-## 9
+```mysql
++------------+--------------------+
+| first_name | LENGTH(first_name) |
++------------+--------------------+
+| Bob        |                  3 |
++------------+--------------------+
+1 row in set (0.00 sec)
+```
 
-## 10
+## Find unique first names starting with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou]';
+```
+
+```mysql
++------------+
+| first_name |
++------------+
+| Ailn       |
+| Ori        |
++------------+
+2 rows in set (0.01 sec)
+```
+
+## Find unique first names that ends with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '[aeiou]$';
+```
+
+```mysql
++------------+
+| first_name |
++------------+
+| Vanacci    |
+| Henrique   |
+| Leeke      |
+| Whale      |
+| Ori        |
+| Presdee    |
++------------+
+6 rows in set (0.00 sec)
+```
+
+## Find unique first names that starts or ends with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou].*[aeiou]$';
+```
+
+```mysql
++------------+
+| first_name |
++------------+
+| Ori        |
++------------+
+1 row in set (0.00 sec)
+```
+
+## Find unique first names that does not starts with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]';
+```
+
+```mysql
++-------------+
+| first_name  |
++-------------+
+| Hounson     |
+| Tison       |
+| Surmeyers   |
+| Bob         |
+| Holdey      |
+| Blewmen     |
+| Vanacci     |
+| Marflitt    |
+| Pietesch    |
+| Henrique    |
+| Tynan       |
+| Pinkard     |
+| Haslock     |
+| Rickell     |
+| Boxhill     |
+| Leeke       |
+| Whale       |
+| Tagg        |
+| Costerd     |
+| Corrin      |
+| Bunford     |
+| Lumley      |
+| Whiles      |
+| Presdee     |
+| Bedberry    |
+| Danilchev   |
+| Whaplington |
++-------------+
+27 rows in set (0.00 sec)
+```
+
+
+## Find unique first names that does not ends with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '[aeiou]$';
+```
+
+```mysql
++-------------+
+| first_name  |
++-------------+
+| Ailn        |
+| Hounson     |
+| Tison       |
+| Surmeyers   |
+| Bob         |
+| Holdey      |
+| Blewmen     |
+| Marflitt    |
+| Pietesch    |
+| Tynan       |
+| Pinkard     |
+| Haslock     |
+| Rickell     |
+| Boxhill     |
+| Tagg        |
+| Costerd     |
+| Corrin      |
+| Bunford     |
+| Lumley      |
+| Whiles      |
+| Bedberry    |
+| Danilchev   |
+| Whaplington |
++-------------+
+23 rows in set (0.01 sec)
+```
+
+## Find unique first names that does not starts or ends with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou].*[aeiou]$';
+```
+
+```mysql
++-------------+
+| first_name  |
++-------------+
+| Ailn        |
+| Hounson     |
+| Tison       |
+| Surmeyers   |
+| Bob         |
+| Holdey      |
+| Blewmen     |
+| Vanacci     |
+| Marflitt    |
+| Pietesch    |
+| Henrique    |
+| Tynan       |
+| Pinkard     |
+| Haslock     |
+| Rickell     |
+| Boxhill     |
+| Leeke       |
+| Whale       |
+| Tagg        |
+| Costerd     |
+| Corrin      |
+| Bunford     |
+| Lumley      |
+| Whiles      |
+| Presdee     |
+| Bedberry    |
+| Danilchev   |
+| Whaplington |
++-------------+
+28 rows in set (0.00 sec)
+```
+
+## Find unique first names that does not starts and ends with vowels.
+
+```mysql
+SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]' AND first_name NOT REGEXP '[aeiou]$';
+```
+
+```mysql
++-------------+
+| first_name  |
++-------------+
+| Hounson     |
+| Tison       |
+| Surmeyers   |
+| Bob         |
+| Holdey      |
+| Blewmen     |
+| Marflitt    |
+| Pietesch    |
+| Tynan       |
+| Pinkard     |
+| Haslock     |
+| Rickell     |
+| Boxhill     |
+| Tagg        |
+| Costerd     |
+| Corrin      |
+| Bunford     |
+| Lumley      |
+| Whiles      |
+| Bedberry    |
+| Danilchev   |
+| Whaplington |
++-------------+
+22 rows in set (0.00 sec)
+```
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
+
+##
 
 ```mysql
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
