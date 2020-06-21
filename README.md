@@ -43,16 +43,60 @@ MySQL is an open-source relational database management system (RDBMS).
 | 29 | Sioux      | Danilchev   | North Esta          | 1-244-938-3948       | Female | sdanilchevs@addtoany.com     | 34989 Kuphal Inlet Suite 190 Gutkowskiville, IA 69417         | 40221    | 1992-10-04    |
 | 30 | Candida    | Whaplington | West Breanabury     | 1-045-399-1032x67023 | Female | cwhaplingtont@cloudflare.com | 488 Martine Villages Bernadettetown, AR 39587-0766            | 86346    | 1998-04-05    |
 
+# Dokcer Setup
+
+Run the following command from the same directory, where the docker-compose.yml file is located.
 
 ```
-select * from STUDENTS where name='bob' and age > 30
-
-select name, age from STUDENTS
-
-select DISTINCT name from STUDENTS WHERE MOD(ID, 2) = 0;
-
-select (count(age)-count(distinct(age))) from STUDENTS;
+docker-compose up
 ```
+
+access the running container `mysql-snippets_db_1`
+
+```
+docker exec -it mysql-snippets_db_1 bash
+mysql -uroot -proot
+```
+
+# MySQL
+
+```
+show databases;
+use test_db;
+```
+Run the MySQl queris from this file [students.sql](students.sql)
+
+## Test
+```
+SELECT * FROM students;
+```
+
+## 1
+```
+SELECT * FROM students WHERE name='bob' and age > 30
+```
+
+## 2
+```
+SELECT name, age FROM students
+```
+
+## 3
+```
+SELECT DISTINCT name FROM students WHERE MOD(ID, 2) = 0;
+```
+
+## 4
+```
+SELECT (count(age)-count(distinct(age))) FROM students;
+```
+
+
+
+
+
+
+
 
 ```
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
