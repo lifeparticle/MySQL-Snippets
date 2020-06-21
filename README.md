@@ -1,10 +1,67 @@
+   * [SQL](#sql)
+   * [MySQL](#mysql)
+   * [Docker Setup](#docker-setup)
+   * [MySQL](#mysql-1)
+      * [Test](#test)
+   * [Examples of Common Queries](#examples-of-common-queries)
+      * [Select students with first name Bob and postcode 23031.](#select-students-with-first-name-bob-and-postcode-23031)
+      * [Select all city names and postcodes.](#select-all-city-names-and-postcodes)
+      * [Select unique first names with even id.](#select-unique-first-names-with-even-id)
+      * [Find duplicate postcodes.](#find-duplicate-postcodes)
+      * [Find the shortest and longest first names ordered alphabetically.](#find-the-shortest-and-longest-first-names-ordered-alphabetically)
+      * [Find unique first names starting with vowels.](#find-unique-first-names-starting-with-vowels)
+      * [Find unique first names that ends with vowels.](#find-unique-first-names-that-ends-with-vowels)
+      * [Find unique first names that starts or ends with vowels.](#find-unique-first-names-that-starts-or-ends-with-vowels)
+      * [Find unique first names that does not starts with vowels.](#find-unique-first-names-that-does-not-starts-with-vowels)
+      * [Find unique first names that does not ends with vowels.](#find-unique-first-names-that-does-not-ends-with-vowels)
+      * [Find unique first names that does not starts or ends with vowels.](#find-unique-first-names-that-does-not-starts-or-ends-with-vowels)
+      * [Find unique first names that does not starts and ends with vowels.](#find-unique-first-names-that-does-not-starts-and-ends-with-vowels)
+      * [TODO](#todo)
+      * [TODO](#todo-1)
+      * [TODO](#todo-2)
+      * [TODO](#todo-3)
+      * [TODO](#todo-4)
+      * [TODO](#todo-5)
+      * [TODO](#todo-6)
+      * [TODO](#todo-7)
+      * [TODO](#todo-8)
+      * [TODO](#todo-9)
+      * [TODO](#todo-10)
+      * [TODO](#todo-11)
+      * [TODO](#todo-12)
+      * [TODO](#todo-13)
+      * [TODO](#todo-14)
+      * [TODO](#todo-15)
+      * [TODO](#todo-16)
+      * [TODO](#todo-17)
+      * [TODO](#todo-18)
+      * [TODO](#todo-19)
+      * [TODO](#todo-20)
+      * [TODO](#todo-21)
+      * [TODO](#todo-22)
+      * [TODO](#todo-23)
+      * [TODO](#todo-24)
+      * [TODO](#todo-25)
+      * [TODO](#todo-26)
+      * [TODO](#todo-27)
+      * [TODO](#todo-28)
+      * [TODO](#todo-29)
+      * [TODO](#todo-30)
+      * [TODO](#todo-31)
+      * [TODO](#todo-32)
+      * [TODO](#todo-33)
+      * [TODO](#todo-34)
+      * [TODO](#todo-35)
+      * [Others](#others)
+   * [Resources](#resources)
+
 # SQL
 SQL, "sequel"; Structured Query Language) is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS), or for stream processing in a relational data stream management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables.
 
 # MySQL
 MySQL is an open-source relational database management system (RDBMS).
 
-# Dokcer Setup
+# Docker Setup
 
 Run the following command from the same directory, where the docker-compose.yml file is located.
 
@@ -32,12 +89,7 @@ Run the MySQl queries from this file [students.sql](students.sql)
 SELECT * FROM students;
 ```
 
-# Examples
-
-[students.sql](students.sql)
-
-Todo
-
+# Examples of Common Queries
 
 ## Select students with first name Bob and postcode 23031.
 ```mysql
