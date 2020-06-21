@@ -429,54 +429,194 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]' 
 22 rows in set (0.00 sec)
 ```
 
-## TODO
+## Use of LEFT and RIGHT
 
 ```mysql
-
+SELECT first_name, LEFT(first_name, 3), RIGHT(first_name, 3) FROM  students;
 ```
 
 ```mysql
-
++-------------+---------------------+----------------------+
+| first_name  | LEFT(first_name, 3) | RIGHT(first_name, 3) |
++-------------+---------------------+----------------------+
+| Ailn        | Ail                 | iln                  |
+| Hounson     | Hou                 | son                  |
+| Tison       | Tis                 | son                  |
+| Surmeyers   | Sur                 | ers                  |
+| Bob         | Bob                 | Bob                  |
+| Holdey      | Hol                 | dey                  |
+| Blewmen     | Ble                 | men                  |
+| Vanacci     | Van                 | cci                  |
+| Marflitt    | Mar                 | itt                  |
+| Pietesch    | Pie                 | sch                  |
+| Henrique    | Hen                 | que                  |
+| Tynan       | Tyn                 | nan                  |
+| Pinkard     | Pin                 | ard                  |
+| Haslock     | Has                 | ock                  |
+| Rickell     | Ric                 | ell                  |
+| Bob         | Bob                 | Bob                  |
+| Boxhill     | Box                 | ill                  |
+| Leeke       | Lee                 | eke                  |
+| Whale       | Wha                 | ale                  |
+| Ori         | Ori                 | Ori                  |
+| Tagg        | Tag                 | agg                  |
+| Costerd     | Cos                 | erd                  |
+| Corrin      | Cor                 | rin                  |
+| Bunford     | Bun                 | ord                  |
+| Lumley      | Lum                 | ley                  |
+| Whiles      | Whi                 | les                  |
+| Presdee     | Pre                 | dee                  |
+| Bedberry    | Bed                 | rry                  |
+| Danilchev   | Dan                 | hev                  |
+| Whaplington | Wha                 | ton                  |
++-------------+---------------------+----------------------+
+30 rows in set (0.00 sec)
 ```
 
-## TODO
+## Ascending order
 
 ```mysql
-
+SELECT first_name from students ORDER BY first_name ASC;
 ```
 
 ```mysql
-
++-------------+
+| first_name  |
++-------------+
+| Ailn        |
+| Bedberry    |
+| Blewmen     |
+| Bob         |
+| Bob         |
+| Boxhill     |
+| Bunford     |
+| Corrin      |
+| Costerd     |
+| Danilchev   |
+| Haslock     |
+| Henrique    |
+| Holdey      |
+| Hounson     |
+| Leeke       |
+| Lumley      |
+| Marflitt    |
+| Ori         |
+| Pietesch    |
+| Pinkard     |
+| Presdee     |
+| Rickell     |
+| Surmeyers   |
+| Tagg        |
+| Tison       |
+| Tynan       |
+| Vanacci     |
+| Whale       |
+| Whaplington |
+| Whiles      |
++-------------+
+30 rows in set (0.00 sec)
 ```
 
-## TODO
+## GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN
 
 ```mysql
-
+SELECT students.id, students.first_name, students.last_name, FLOOR(AVG(marks.mark)), GROUP_CONCAT(marks.subject) FROM students JOIN marks
+ON students.id = marks.student_id
+GROUP BY students.id;
 ```
 
 ```mysql
-
++----+------------+--------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| id | first_name | last_name          | FLOOR(AVG(marks.mark)) | GROUP_CONCAT(marks.subject)                                                                                                                                      |
++----+------------+--------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  1 | Ailn       | Rathmouth          |                     85 | Alien Ethics,Foreign Arts,Space Travel,Alien Dance History,Planetary Ecology                                                                                     |
+|  2 | Hounson    | Port Lolamouth     |                     52 | Mathematics,Planetary History                                                                                                                                    |
+|  3 | Tison      | Lavernastad        |                     63 | Magic Survival,Foreign Ethics,Foreign Statistics,Foreign Pathology,Galactic History                                                                              |
+|  4 | Surmeyers  | Ethelville         |                     71 | Necromancy,Dimensional Manipulation,Nutrition Recognition,Transmutation,Planetary Geography,Alien Economics,Magic Music,Magic Rituals,Foreign Instrumental Music |
+|  5 | Bob        | Schulistland       |                     76 | Alien Medicine                                                                                                                                                   |
+|  6 | Holdey     | Kennithside        |                     57 | Alien Physiology,Alien Social Studies,Magic Music,Intergallactic Relations,Herbalism,Foreign Arts                                                                |
+|  7 | Blewmen    | Oberbrunnerchester |                     75 | Foreign Political Sciences,Military Law,Alien Bioengineering,Foreign Social Skills,Foreign History                                                               |
+|  8 | Vanacci    | Marcoport          |                     64 | Foreign Services,Alien Social Skills,Alien Genealogy,Terraforming                                                                                                |
+|  9 | Marflitt   | New Adalineton     |                     48 | Grand Strategy,Magic Arts,Foreign Evolutionary Biology                                                                                                           |
++----+------------+--------------------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+9 rows in set (0.00 sec)
 ```
 
-## TODO
+## IF with JOIN
 
 ```mysql
-
+SELECT students.id, IF(marks.mark < 50, "Fail", "Pass"), marks.subject AS result FROM students JOIN marks
+ON students.id = marks.student_id;
 ```
 
 ```mysql
-
++----+-------------------------------------+------------------------------+
+| id | IF(marks.mark < 50, "Fail", "Pass") | result                       |
++----+-------------------------------------+------------------------------+
+|  3 | Fail                                | Magic Survival               |
+|  4 | Pass                                | Planetary Geography          |
+|  9 | Pass                                | Foreign Evolutionary Biology |
+|  6 | Pass                                | Intergallactic Relations     |
+|  9 | Fail                                | Grand Strategy               |
+|  7 | Pass                                | Foreign History              |
+|  1 | Pass                                | Alien Dance History          |
+|  7 | Pass                                | Foreign Social Skills        |
+|  8 | Pass                                | Alien Social Skills          |
+|  4 | Pass                                | Magic Music                  |
+|  8 | Pass                                | Alien Genealogy              |
+|  4 | Pass                                | Magic Rituals                |
+|  1 | Pass                                | Planetary Ecology            |
+|  7 | Pass                                | Military Law                 |
+|  3 | Pass                                | Foreign Ethics               |
+|  4 | Pass                                | Foreign Instrumental Music   |
+|  8 | Pass                                | Foreign Services             |
+|  4 | Pass                                | Alien Economics              |
+|  1 | Pass                                | Alien Ethics                 |
+|  9 | Fail                                | Magic Arts                   |
+|  6 | Fail                                | Alien Social Studies         |
+|  7 | Pass                                | Foreign Political Sciences   |
+|  8 | Pass                                | Terraforming                 |
+|  4 | Pass                                | Transmutation                |
+|  1 | Pass                                | Space Travel                 |
+|  5 | Pass                                | Alien Medicine               |
+|  3 | Pass                                | Foreign Statistics           |
+|  4 | Pass                                | Necromancy                   |
+|  6 | Fail                                | Magic Music                  |
+|  2 | Fail                                | Planetary History            |
+|  6 | Pass                                | Herbalism                    |
+|  4 | Fail                                | Dimensional Manipulation     |
+|  4 | Pass                                | Nutrition Recognition        |
+|  3 | Pass                                | Foreign Pathology            |
+|  6 | Pass                                | Foreign Arts                 |
+|  7 | Pass                                | Alien Bioengineering         |
+|  6 | Pass                                | Alien Physiology             |
+|  2 | Pass                                | Mathematics                  |
+|  1 | Pass                                | Foreign Arts                 |
+|  3 | Pass                                | Galactic History             |
++----+-------------------------------------+------------------------------+
+40 rows in set (0.01 sec)
 ```
 
-## TODO
+## BETWEEN with JOIN
 
 ```mysql
-
+SELECT students.id, marks.mark, marks.subject FROM students JOIN marks
+ON students.id = marks.student_id
+WHERE marks.mark BETWEEN 90 AND 100;
 ```
 
 ```mysql
-
++----+------+---------------------+
+| id | mark | subject             |
++----+------+---------------------+
+|  1 | 98   | Alien Dance History |
+|  4 | 91   | Alien Economics     |
+|  1 | 91   | Alien Ethics        |
+|  1 | 98   | Space Travel        |
+|  3 | 98   | Foreign Statistics  |
+|  4 | 100  | Necromancy          |
++----+------+---------------------+
+6 rows in set (0.00 sec)
 ```
 
 ## TODO
@@ -801,3 +941,4 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 2.  [MySQL](https://en.wikipedia.org/wiki/MySQL)
 3.  [filldb](http://filldb.info/)
 4. [mockaroo](https://www.mockaroo.com/)
+5. [fantasynamegenerators](https://www.fantasynamegenerators.com/school-subjects.php)
