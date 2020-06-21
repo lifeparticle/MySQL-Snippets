@@ -4,13 +4,6 @@ SQL, "sequel"; Structured Query Language) is a domain-specific language used in 
 # MySQL
 MySQL is an open-source relational database management system (RDBMS).
 
-
-# Example
-
-[students.sql](students.sql)
-
-Todo
-
 # Dokcer Setup
 
 Run the following command from the same directory, where the docker-compose.yml file is located.
@@ -39,7 +32,14 @@ Run the MySQl queries from this file [students.sql](students.sql)
 SELECT * FROM students;
 ```
 
-## 1
+# Examples
+
+[students.sql](students.sql)
+
+Todo
+
+
+## Select students with first name Bob and postcode 23031.
 ```mysql
 SELECT * FROM students WHERE first_name='Bob' and postcode=23031;
 ```
@@ -54,7 +54,7 @@ SELECT * FROM students WHERE first_name='Bob' and postcode=23031;
 2 rows in set (0.00 sec)
 ```
 
-## 2
+## Select all city names and postcodes.
 ```mysql
 SELECT city, postcode FROM students;
 ```
@@ -97,7 +97,7 @@ SELECT city, postcode FROM students;
 30 rows in set (0.00 sec)
 ```
 
-## 3
+## Select unique first names with even id.
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 ```
@@ -127,7 +127,7 @@ SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 17 rows in set (0.00 sec)
 ```
 
-## Find the duplicate postcodes
+## Find duplicate postcodes.
 ```mysql
 SELECT (COUNT(postcode)-COUNT(DISTINCT(postcode))) FROM students;
 ```
@@ -377,41 +377,367 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]' 
 22 rows in set (0.00 sec)
 ```
 
-##
+## TODO
 
-##
+```mysql
 
-##
+```
 
-##
+```mysql
 
-##
+```
 
-##
+## TODO
 
-##
+```mysql
 
-##
+```
 
-##
+```mysql
 
-##
+```
 
-##
+## TODO
 
-##
+```mysql
 
-##
+```
 
-##
+```mysql
 
-##
+```
 
-##
+## TODO
 
-##
+```mysql
 
-##
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
+```
+
+## Others
 
 ```mysql
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
