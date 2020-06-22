@@ -84,13 +84,13 @@ docker exec -it mysql-snippets_db_1 bash
 
 Run the MySQl queries from this file [students.sql](students.sql) from the MySQL CLI.
 
-```
+```mysql
 mysql -uroot -proot
 ```
 
 or import the sql file.
 
-```
+```mysql
 mysql -uroot -p test_db < school.sql
 ```
 
@@ -107,13 +107,13 @@ SELECT * FROM students;
 
 Create a new database.
 
-```
+```mysql
 CREATE DATABASE test_db_1;
 ```
 
 Delete a database. This will delete all the tables within the database.
 
-```
+```mysql
 DROP DATABASE test_db_1;
 ```
 
@@ -153,7 +153,6 @@ Copy a table.
 CREATE TABLE new_table_name TO old_table_name;
 INSERT new_table_name SELECT * FROM old_table_name;
 ```
-
 
 
 ## Select students with first name Bob and postcode 23031.
@@ -996,8 +995,8 @@ WHERE marks.mark BETWEEN 90 AND 100;
 
 # Use of Like keyword
 
-% - any sequence of zero, one, or multiple characters
-_ - matches a single character
+* % - any sequence of zero, one, or multiple characters
+* _ - matches a single character
 
 ```mysql
 SHOW DATABASES LIKE 'test%';
