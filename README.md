@@ -944,7 +944,70 @@ WHERE s.id is null;
 
 ## Case
 
+```mysql
+SELECT
+    CASE
+        WHEN marks.mark >= 90 AND marks.mark <= 100 THEN "A"
+        WHEN marks.mark >= 80 AND marks.mark <= 89 THEN "B"
+        WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
+        WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
+        WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
+ELSE "F"
+END AS grades
+FROM marks
+ORDER BY grades;
 ```
+
+```mysql
++--------+
+| grades |
++--------+
+| A      |
+| A      |
+| A      |
+| A      |
+| A      |
+| A      |
+| B      |
+| B      |
+| B      |
+| B      |
+| B      |
+| B      |
+| B      |
+| B      |
+| C      |
+| C      |
+| C      |
+| C      |
+| C      |
+| C      |
+| C      |
+| C      |
+| C      |
+| D      |
+| D      |
+| D      |
+| E      |
+| E      |
+| E      |
+| E      |
+| E      |
+| E      |
+| E      |
+| E      |
+| F      |
+| F      |
+| F      |
+| F      |
+| F      |
+| F      |
+| F      |
++--------+
+41 rows in set (0.00 sec)
+```
+
+```mysql
 SELECT marks.mark,
     CASE
         WHEN marks.mark >= 90 AND marks.mark <= 100 THEN "A"
