@@ -1,60 +1,38 @@
-   * [SQL](#sql)
-   * [MySQL](#mysql)
-   * [Docker Setup](#docker-setup)
-   * [MySQL Keywords](#mysql-keywords)
-   * [MySQL Databases](#mysql-databases)
-   * [MySQL Tables](#mysql-tables)
-      * [Select students with first name Bob and postcode 23031.](#select-students-with-first-name-bob-and-postcode-23031)
-      * [Select all city names and postcodes.](#select-all-city-names-and-postcodes)
-      * [Select unique first names with even id.](#select-unique-first-names-with-even-id)
-      * [Find duplicate postcodes.](#find-duplicate-postcodes)
-      * [Find the shortest and longest first names ordered alphabetically.](#find-the-shortest-and-longest-first-names-ordered-alphabetically)
-      * [Find unique first names starting with vowels.](#find-unique-first-names-starting-with-vowels)
-      * [Find unique first names that ends with vowels.](#find-unique-first-names-that-ends-with-vowels)
-      * [Find unique first names that starts or ends with vowels.](#find-unique-first-names-that-starts-or-ends-with-vowels)
-      * [Find unique first names that does not starts with vowels.](#find-unique-first-names-that-does-not-starts-with-vowels)
-      * [Find unique first names that does not ends with vowels.](#find-unique-first-names-that-does-not-ends-with-vowels)
-      * [Find unique first names that does not starts or ends with vowels.](#find-unique-first-names-that-does-not-starts-or-ends-with-vowels)
-      * [Find unique first names that does not starts and ends with vowels.](#find-unique-first-names-that-does-not-starts-and-ends-with-vowels)
-      * [Use of LEFT and RIGHT](#use-of-left-and-right)
-      * [Ascending order](#ascending-order)
-      * [GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN](#group-by-group_concat-floor-avg-with-join)
-      * [IF with JOIN](#if-with-join)
-      * [BETWEEN with JOIN](#between-with-join)
-      * [TODO](#todo)
-      * [TODO](#todo-1)
-      * [TODO](#todo-2)
-      * [TODO](#todo-3)
-      * [TODO](#todo-4)
-      * [TODO](#todo-5)
-      * [TODO](#todo-6)
-      * [TODO](#todo-7)
-      * [TODO](#todo-8)
-      * [TODO](#todo-9)
-      * [TODO](#todo-10)
-      * [TODO](#todo-11)
-      * [TODO](#todo-12)
-      * [TODO](#todo-13)
-      * [TODO](#todo-14)
-      * [TODO](#todo-15)
-      * [TODO](#todo-16)
-      * [TODO](#todo-17)
-      * [TODO](#todo-18)
-      * [TODO](#todo-19)
-      * [TODO](#todo-20)
-      * [TODO](#todo-21)
-      * [TODO](#todo-22)
-      * [TODO](#todo-23)
-      * [TODO](#todo-24)
-      * [TODO](#todo-25)
-      * [TODO](#todo-26)
-      * [TODO](#todo-27)
-      * [TODO](#todo-28)
-      * [TODO](#todo-29)
-      * [TODO](#todo-30)
-   * [Use of Like keyword](#use-of-like-keyword)
-      * [Others](#others)
-   * [Resources](#resources)
+* [SQL](#sql)
+* [MySQL](#mysql)
+* [Docker Setup](#docker-setup)
+* [MySQL Keywords](#mysql-keywords)
+* [MySQL Databases](#mysql-databases)
+* [MySQL Tables](#mysql-tables)
+  * [Select students with first name Bob and postcode 23031.](#select-students-with-first-name-bob-and-postcode-23031)
+  * [Select all city names and postcodes.](#select-all-city-names-and-postcodes)
+  * [Select unique first names with even id.](#select-unique-first-names-with-even-id)
+  * [Find duplicate postcodes.](#find-duplicate-postcodes)
+  * [Find the shortest and longest first names ordered alphabetically.](#find-the-shortest-and-longest-first-names-ordered-alphabetically)
+  * [Find unique first names starting with vowels.](#find-unique-first-names-starting-with-vowels)
+  * [Find unique first names that ends with vowels.](#find-unique-first-names-that-ends-with-vowels)
+  * [Find unique first names that starts or ends with vowels.](#find-unique-first-names-that-starts-or-ends-with-vowels)
+  * [Find unique first names that does not starts with vowels.](#find-unique-first-names-that-does-not-starts-with-vowels)
+  * [Find unique first names that does not ends with vowels.](#find-unique-first-names-that-does-not-ends-with-vowels)
+  * [Find unique first names that does not starts or ends with vowels.](#find-unique-first-names-that-does-not-starts-or-ends-with-vowels)
+  * [Find unique first names that does not starts and ends with vowels.](#find-unique-first-names-that-does-not-starts-and-ends-with-vowels)
+  * [Use of LEFT and RIGHT](#use-of-left-and-right)
+  * [Ascending order](#ascending-order)
+  * [GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN](#group-by-group_concat-floor-avg-with-join)
+  * [IF with JOIN](#if-with-join)
+  * [BETWEEN with JOIN](#between-with-join)
+  * [Joining tables](#joining-tables)
+     * [INNER JOIN](#inner-join)
+     * [OUTER JOIN](#outer-join)
+        * [LEFT JOIN](#left-join)
+        * [RIGHT JOIN](#right-join)
+        * [FULL OUTER JOIN](#full-outer-join)
+  * [Case](#case)
+  * [TODO](#todo)
+  * [TODO](#todo-1)
+* [Use of Like keyword](#use-of-like-keyword)
+* [Others](#others)
+* [Resources](#resources)
 
 # SQL
 SQL, "sequel"; Structured Query Language) is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS), or for stream processing in a relational data stream management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables.
@@ -683,294 +661,413 @@ WHERE marks.mark BETWEEN 90 AND 100;
 6 rows in set (0.00 sec)
 ```
 
-## TODO
+## Joining tables
+
+### INNER JOIN
+In MySQL, `JOIN`, `CROSS JOIN`, and `INNER JOIN` are syntactic equivalents (they can replace each other).
+
+An inner join will give you all common rows in both A and B.
 
 ```mysql
-
+SELECT s.first_name, s.last_name, m.mark
+FROM students AS s JOIN marks AS m
+ON m.student_id = s.id
+ORDER BY m.mark;
 ```
 
 ```mysql
-
++------------+--------------------+------+
+| first_name | last_name          | mark |
++------------+--------------------+------+
+| Holdey     | Kennithside        |    0 |
+| Tison      | Lavernastad        |   23 |
+| Marflitt   | New Adalineton     |   23 |
+| Surmeyers  | Ethelville         |   34 |
+| Hounson    | Port Lolamouth     |   34 |
+| Holdey     | Kennithside        |   34 |
+| Marflitt   | New Adalineton     |   45 |
+| Blewmen    | Oberbrunnerchester |   54 |
+| Surmeyers  | Ethelville         |   56 |
+| Tison      | Lavernastad        |   56 |
+| Vanacci    | Marcoport          |   56 |
+| Surmeyers  | Ethelville         |   56 |
+| Tison      | Lavernastad        |   57 |
+| Holdey     | Kennithside        |   58 |
+| Vanacci    | Marcoport          |   59 |
+| Vanacci    | Marcoport          |   65 |
+| Surmeyers  | Ethelville         |   67 |
+| Ailn       | Rathmouth          |   69 |
+| Hounson    | Port Lolamouth     |   71 |
+| Ailn       | Rathmouth          |   72 |
+| Blewmen    | Oberbrunnerchester |   76 |
+| Vanacci    | Marcoport          |   76 |
+| Surmeyers  | Ethelville         |   76 |
+| Surmeyers  | Ethelville         |   76 |
+| Bob        | Schulistland       |   76 |
+| Marflitt   | New Adalineton     |   77 |
+| Blewmen    | Oberbrunnerchester |   79 |
+| Blewmen    | Oberbrunnerchester |   80 |
+| Holdey     | Kennithside        |   81 |
+| Holdey     | Kennithside        |   83 |
+| Tison      | Lavernastad        |   84 |
+| Blewmen    | Oberbrunnerchester |   87 |
+| Holdey     | Kennithside        |   88 |
+| Surmeyers  | Ethelville         |   89 |
+| Ailn       | Rathmouth          |   91 |
+| Surmeyers  | Ethelville         |   91 |
+| Ailn       | Rathmouth          |   98 |
+| Tison      | Lavernastad        |   98 |
+| Ailn       | Rathmouth          |   98 |
+| Surmeyers  | Ethelville         |  100 |
++------------+--------------------+------+
+40 rows in set (0.00 sec)
 ```
 
-## TODO
+### OUTER JOIN
+
+#### LEFT JOIN
+A left outer join will give all rows in A, plus any common rows in B.
 
 ```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
+SELECT s.first_name, s.last_name, m.mark FROM students AS s
+    LEFT JOIN marks AS m ON m.student_id = s.id
+ORDER BY m.mark;
 ```
 
 ```mysql
-
++-------------+---------------------+------+
+| first_name  | last_name           | mark |
++-------------+---------------------+------+
+| Whaplington | West Breanabury     | NULL |
+| Boxhill     | West Jedediahville  | NULL |
+| Bob         | Port Thoraland      | NULL |
+| Rickell     | East Breanne        | NULL |
+| Haslock     | South Hunter        | NULL |
+| Pinkard     | Port Adrianaborough | NULL |
+| Tynan       | North Deondreland   | NULL |
+| Henrique    | Kevinmouth          | NULL |
+| Pietesch    | East Kayla          | NULL |
+| Leeke       | Franeckiland        | NULL |
+| Whale       | Lake Clare          | NULL |
+| Ori         | Beattyburgh         | NULL |
+| Tagg        | Oberbrunnerport     | NULL |
+| Costerd     | Ricofort            | NULL |
+| Corrin      | East Graycefurt     | NULL |
+| Bunford     | West Joeport        | NULL |
+| Presdee     | North Ernestinaton  | NULL |
+| Lumley      | Oceanestad          | NULL |
+| Danilchev   | North Esta          | NULL |
+| Bedberry    | Jakaylaland         | NULL |
+| Whiles      | Creolashire         | NULL |
+| Holdey      | Kennithside         |    0 |
+| Marflitt    | New Adalineton      |   23 |
+| Tison       | Lavernastad         |   23 |
+| Hounson     | Port Lolamouth      |   34 |
+| Surmeyers   | Ethelville          |   34 |
+| Holdey      | Kennithside         |   34 |
+| Marflitt    | New Adalineton      |   45 |
+| Blewmen     | Oberbrunnerchester  |   54 |
+| Vanacci     | Marcoport           |   56 |
+| Surmeyers   | Ethelville          |   56 |
+| Tison       | Lavernastad         |   56 |
+| Surmeyers   | Ethelville          |   56 |
+| Tison       | Lavernastad         |   57 |
+| Holdey      | Kennithside         |   58 |
+| Vanacci     | Marcoport           |   59 |
+| Vanacci     | Marcoport           |   65 |
+| Surmeyers   | Ethelville          |   67 |
+| Ailn        | Rathmouth           |   69 |
+| Hounson     | Port Lolamouth      |   71 |
+| Ailn        | Rathmouth           |   72 |
+| Blewmen     | Oberbrunnerchester  |   76 |
+| Vanacci     | Marcoport           |   76 |
+| Surmeyers   | Ethelville          |   76 |
+| Bob         | Schulistland        |   76 |
+| Surmeyers   | Ethelville          |   76 |
+| Marflitt    | New Adalineton      |   77 |
+| Blewmen     | Oberbrunnerchester  |   79 |
+| Blewmen     | Oberbrunnerchester  |   80 |
+| Holdey      | Kennithside         |   81 |
+| Holdey      | Kennithside         |   83 |
+| Tison       | Lavernastad         |   84 |
+| Blewmen     | Oberbrunnerchester  |   87 |
+| Holdey      | Kennithside         |   88 |
+| Surmeyers   | Ethelville          |   89 |
+| Surmeyers   | Ethelville          |   91 |
+| Ailn        | Rathmouth           |   91 |
+| Tison       | Lavernastad         |   98 |
+| Ailn        | Rathmouth           |   98 |
+| Ailn        | Rathmouth           |   98 |
+| Surmeyers   | Ethelville          |  100 |
++-------------+---------------------+------+
+61 rows in set (0.00 sec)
 ```
 
-## TODO
+#### RIGHT JOIN
+A right outer join will give all rows in B, plus any common rows in A.
 
 ```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
+SELECT s.first_name, s.last_name, m.mark FROM students AS s
+    RIGHT JOIN marks AS m ON m.student_id = s.id
+ORDER BY m.mark;
 ```
 
 ```mysql
-
++------------+--------------------+------+
+| first_name | last_name          | mark |
++------------+--------------------+------+
+| Holdey     | Kennithside        |    0 |
+| Tison      | Lavernastad        |   23 |
+| Marflitt   | New Adalineton     |   23 |
+| Surmeyers  | Ethelville         |   34 |
+| Hounson    | Port Lolamouth     |   34 |
+| Holdey     | Kennithside        |   34 |
+| Marflitt   | New Adalineton     |   45 |
+| Blewmen    | Oberbrunnerchester |   54 |
+| Surmeyers  | Ethelville         |   56 |
+| Tison      | Lavernastad        |   56 |
+| Vanacci    | Marcoport          |   56 |
+| Surmeyers  | Ethelville         |   56 |
+| Tison      | Lavernastad        |   57 |
+| Holdey     | Kennithside        |   58 |
+| Vanacci    | Marcoport          |   59 |
+| Vanacci    | Marcoport          |   65 |
+| Surmeyers  | Ethelville         |   67 |
+| Ailn       | Rathmouth          |   69 |
+| Hounson    | Port Lolamouth     |   71 |
+| Ailn       | Rathmouth          |   72 |
+| Blewmen    | Oberbrunnerchester |   76 |
+| Vanacci    | Marcoport          |   76 |
+| Surmeyers  | Ethelville         |   76 |
+| Surmeyers  | Ethelville         |   76 |
+| Bob        | Schulistland       |   76 |
+| Marflitt   | New Adalineton     |   77 |
+| Blewmen    | Oberbrunnerchester |   79 |
+| Blewmen    | Oberbrunnerchester |   80 |
+| Holdey     | Kennithside        |   81 |
+| Holdey     | Kennithside        |   83 |
+| Tison      | Lavernastad        |   84 |
+| NULL       | NULL               |   84 |
+| Blewmen    | Oberbrunnerchester |   87 |
+| Holdey     | Kennithside        |   88 |
+| Surmeyers  | Ethelville         |   89 |
+| Ailn       | Rathmouth          |   91 |
+| Surmeyers  | Ethelville         |   91 |
+| Ailn       | Rathmouth          |   98 |
+| Tison      | Lavernastad        |   98 |
+| Ailn       | Rathmouth          |   98 |
+| Surmeyers  | Ethelville         |  100 |
++------------+--------------------+------+
+41 rows in set (0.00 sec)
 ```
-
-## TODO
+#### FULL OUTER JOIN
+A full outer join will give you all the rows in A and all the rows in B. We can use the follwing code to emulate full outer joins.
 
 ```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
+SELECT s.first_name, s.last_name, m.mark FROM students AS s
+   LEFT JOIN marks AS m ON m.student_id = s.id
+UNION ALL
+SELECT s.first_name, s.last_name, m.mark FROM students AS s
+   RIGHT JOIN marks AS m ON m.student_id = s.id
+WHERE s.id is null;
 ```
 
 ```mysql
-
++-------------+---------------------+------+
+| first_name  | last_name           | mark |
++-------------+---------------------+------+
+| Ailn        | Rathmouth           |   72 |
+| Ailn        | Rathmouth           |   98 |
+| Ailn        | Rathmouth           |   91 |
+| Ailn        | Rathmouth           |   69 |
+| Ailn        | Rathmouth           |   98 |
+| Hounson     | Port Lolamouth      |   71 |
+| Hounson     | Port Lolamouth      |   34 |
+| Tison       | Lavernastad         |   84 |
+| Tison       | Lavernastad         |   56 |
+| Tison       | Lavernastad         |   98 |
+| Tison       | Lavernastad         |   57 |
+| Tison       | Lavernastad         |   23 |
+| Surmeyers   | Ethelville          |   67 |
+| Surmeyers   | Ethelville          |   34 |
+| Surmeyers   | Ethelville          |  100 |
+| Surmeyers   | Ethelville          |   76 |
+| Surmeyers   | Ethelville          |   91 |
+| Surmeyers   | Ethelville          |   56 |
+| Surmeyers   | Ethelville          |   89 |
+| Surmeyers   | Ethelville          |   76 |
+| Surmeyers   | Ethelville          |   56 |
+| Bob         | Schulistland        |   76 |
+| Holdey      | Kennithside         |   81 |
+| Holdey      | Kennithside         |   88 |
+| Holdey      | Kennithside         |   58 |
+| Holdey      | Kennithside         |    0 |
+| Holdey      | Kennithside         |   34 |
+| Holdey      | Kennithside         |   83 |
+| Blewmen     | Oberbrunnerchester  |   80 |
+| Blewmen     | Oberbrunnerchester  |   54 |
+| Blewmen     | Oberbrunnerchester  |   79 |
+| Blewmen     | Oberbrunnerchester  |   87 |
+| Blewmen     | Oberbrunnerchester  |   76 |
+| Vanacci     | Marcoport           |   56 |
+| Vanacci     | Marcoport           |   59 |
+| Vanacci     | Marcoport           |   76 |
+| Vanacci     | Marcoport           |   65 |
+| Marflitt    | New Adalineton      |   23 |
+| Marflitt    | New Adalineton      |   45 |
+| Marflitt    | New Adalineton      |   77 |
+| Pietesch    | East Kayla          | NULL |
+| Henrique    | Kevinmouth          | NULL |
+| Tynan       | North Deondreland   | NULL |
+| Pinkard     | Port Adrianaborough | NULL |
+| Haslock     | South Hunter        | NULL |
+| Rickell     | East Breanne        | NULL |
+| Bob         | Port Thoraland      | NULL |
+| Boxhill     | West Jedediahville  | NULL |
+| Leeke       | Franeckiland        | NULL |
+| Whale       | Lake Clare          | NULL |
+| Ori         | Beattyburgh         | NULL |
+| Tagg        | Oberbrunnerport     | NULL |
+| Costerd     | Ricofort            | NULL |
+| Corrin      | East Graycefurt     | NULL |
+| Bunford     | West Joeport        | NULL |
+| Lumley      | Oceanestad          | NULL |
+| Whiles      | Creolashire         | NULL |
+| Presdee     | North Ernestinaton  | NULL |
+| Bedberry    | Jakaylaland         | NULL |
+| Danilchev   | North Esta          | NULL |
+| Whaplington | West Breanabury     | NULL |
+| NULL        | NULL                |   84 |
++-------------+---------------------+------+
+62 rows in set (0.00 sec)
 ```
 
-## TODO
+## Case
 
-```mysql
-
+```
+SELECT marks.mark,
+    CASE
+        WHEN marks.mark >= 90 AND marks.mark <= 100 THEN "A"
+        WHEN marks.mark >= 80 AND marks.mark <= 89 THEN "B"
+        WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
+        WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
+        WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
+ELSE "F"
+END AS grades
+FROM marks
+ORDER BY grades;
 ```
 
 ```mysql
-
++------+--------+
+| mark | grades |
++------+--------+
+|  100 | A      |
+|   91 | A      |
+|   91 | A      |
+|   98 | A      |
+|   98 | A      |
+|   98 | A      |
+|   84 | B      |
+|   81 | B      |
+|   80 | B      |
+|   88 | B      |
+|   89 | B      |
+|   87 | B      |
+|   84 | B      |
+|   83 | B      |
+|   76 | C      |
+|   76 | C      |
+|   72 | C      |
+|   71 | C      |
+|   79 | C      |
+|   76 | C      |
+|   76 | C      |
+|   76 | C      |
+|   77 | C      |
+|   69 | D      |
+|   67 | D      |
+|   65 | D      |
+|   56 | E      |
+|   56 | E      |
+|   58 | E      |
+|   56 | E      |
+|   54 | E      |
+|   59 | E      |
+|   56 | E      |
+|   57 | E      |
+|   34 | F      |
+|    0 | F      |
+|   34 | F      |
+|   34 | F      |
+|   23 | F      |
+|   45 | F      |
+|   23 | F      |
++------+--------+
+41 rows in set (0.00 sec)
 ```
 
-## TODO
-
 ```mysql
-
+SELECT students.id, marks.mark, marks.subject,
+    CASE
+        WHEN marks.mark >= 90 AND marks.mark <= 100 THEN "A"
+        WHEN marks.mark >= 80 AND marks.mark <= 89 THEN "B"
+        WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
+        WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
+        WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
+ELSE "F"
+END AS grades
+FROM students
+    JOIN marks ON students.id = marks.student_id
+ORDER BY grades;
 ```
 
 ```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
-
++----+------+------------------------------+--------+
+| id | mark | subject                      | grades |
++----+------+------------------------------+--------+
+|  4 |  100 | Necromancy                   | A      |
+|  4 |   91 | Alien Economics              | A      |
+|  1 |   91 | Alien Ethics                 | A      |
+|  3 |   98 | Foreign Statistics           | A      |
+|  1 |   98 | Alien Dance History          | A      |
+|  1 |   98 | Space Travel                 | A      |
+|  6 |   81 | Alien Physiology             | B      |
+|  7 |   80 | Alien Bioengineering         | B      |
+|  6 |   88 | Foreign Arts                 | B      |
+|  4 |   89 | Magic Rituals                | B      |
+|  7 |   87 | Foreign Social Skills        | B      |
+|  3 |   84 | Galactic History             | B      |
+|  6 |   83 | Intergallactic Relations     | B      |
+|  4 |   76 | Transmutation                | C      |
+|  5 |   76 | Alien Medicine               | C      |
+|  1 |   72 | Foreign Arts                 | C      |
+|  2 |   71 | Mathematics                  | C      |
+|  7 |   79 | Military Law                 | C      |
+|  8 |   76 | Alien Genealogy              | C      |
+|  4 |   76 | Magic Music                  | C      |
+|  7 |   76 | Foreign History              | C      |
+|  9 |   77 | Foreign Evolutionary Biology | C      |
+|  1 |   69 | Planetary Ecology            | D      |
+|  4 |   67 | Nutrition Recognition        | D      |
+|  8 |   65 | Alien Social Skills          | D      |
+|  4 |   56 | Planetary Geography          | E      |
+|  3 |   56 | Foreign Pathology            | E      |
+|  6 |   58 | Herbalism                    | E      |
+|  8 |   56 | Terraforming                 | E      |
+|  7 |   54 | Foreign Political Sciences   | E      |
+|  8 |   59 | Foreign Services             | E      |
+|  4 |   56 | Foreign Instrumental Music   | E      |
+|  3 |   57 | Foreign Ethics               | E      |
+|  2 |   34 | Planetary History            | F      |
+|  6 |    0 | Magic Music                  | F      |
+|  4 |   34 | Dimensional Manipulation     | F      |
+|  6 |   34 | Alien Social Studies         | F      |
+|  9 |   23 | Magic Arts                   | F      |
+|  9 |   45 | Grand Strategy               | F      |
+|  3 |   23 | Magic Survival               | F      |
++----+------+------------------------------+--------+
+40 rows in set (0.00 sec)
 ```
 
 ## TODO
@@ -1024,7 +1121,7 @@ SHOW DATABASES LIKE 'test\_d_';
 1 row in set (0.00 sec)
 ```
 
-## Others
+# Others
 
 ```mysql
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
@@ -1036,3 +1133,6 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 3.  [filldb](http://filldb.info/)
 4. [mockaroo](https://www.mockaroo.com/)
 5. [fantasynamegenerators](https://www.fantasynamegenerators.com/school-subjects.php)
+6. [join](https://dev.mysql.com/doc/refman/8.0/en/join.html)
+7. [what-is-the-difference-between-inner-join-and-outer-join](https://stackoverflow.com/questions/38549/what-is-the-difference-between-inner-join-and-outer-join)
+8. [how-to-write-full-outer-join-in-mysql](https://www.xaprb.com/blog/2006/05/26/how-to-write-full-outer-join-in-mysql)
