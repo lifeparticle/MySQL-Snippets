@@ -74,6 +74,17 @@ access the running container `mysql-snippets_db_1`
 
 ```bash
 docker exec -it mysql-snippets_db_1 bash
+```
+
+# MySQL Keywords
+
+[Keywords](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
+
+# MySQL Databases
+
+Run the MySQl queries from this file [students.sql](students.sql) from the MySQL CLI.
+
+```
 mysql -uroot -proot
 ```
 
@@ -83,19 +94,12 @@ or import the sql file.
 mysql -uroot -p test_db < school.sql
 ```
 
-Type the paswword `root` and you're done.
-
-# MySQL Keywords
-
-[keywords](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
-
-# MySQL Databases
+Type the password `root` and you're done.
 
 ```mysql
 SHOW DATABASES;
 USE test_db;
 ```
-Run the MySQl queries from this file [students.sql](students.sql)
 
 ```mysql
 SELECT * FROM students;
