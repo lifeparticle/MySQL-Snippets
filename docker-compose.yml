@@ -10,3 +10,5 @@ services:
       MYSQL_DATABASE: test_db
     ports:
       - "3307:3306"
+    volumes:
+      - $HOME/Desktop/MySQL-Snippets/school.sql:/school.sql

@@ -1,9 +1,9 @@
    * [SQL](#sql)
    * [MySQL](#mysql)
    * [Docker Setup](#docker-setup)
-   * [MySQL](#mysql-1)
-      * [Test](#test)
-   * [Examples of Common Queries](#examples-of-common-queries)
+   * [MySQL Keywords](#mysql-keywords)
+   * [MySQL Databases](#mysql-databases)
+   * [MySQL Tables](#mysql-tables)
       * [Select students with first name Bob and postcode 23031.](#select-students-with-first-name-bob-and-postcode-23031)
       * [Select all city names and postcodes.](#select-all-city-names-and-postcodes)
       * [Select unique first names with even id.](#select-unique-first-names-with-even-id)
@@ -16,6 +16,11 @@
       * [Find unique first names that does not ends with vowels.](#find-unique-first-names-that-does-not-ends-with-vowels)
       * [Find unique first names that does not starts or ends with vowels.](#find-unique-first-names-that-does-not-starts-or-ends-with-vowels)
       * [Find unique first names that does not starts and ends with vowels.](#find-unique-first-names-that-does-not-starts-and-ends-with-vowels)
+      * [Use of LEFT and RIGHT](#use-of-left-and-right)
+      * [Ascending order](#ascending-order)
+      * [GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN](#group-by-group_concat-floor-avg-with-join)
+      * [IF with JOIN](#if-with-join)
+      * [BETWEEN with JOIN](#between-with-join)
       * [TODO](#todo)
       * [TODO](#todo-1)
       * [TODO](#todo-2)
@@ -47,11 +52,7 @@
       * [TODO](#todo-28)
       * [TODO](#todo-29)
       * [TODO](#todo-30)
-      * [TODO](#todo-31)
-      * [TODO](#todo-32)
-      * [TODO](#todo-33)
-      * [TODO](#todo-34)
-      * [TODO](#todo-35)
+   * [Use of Like keyword](#use-of-like-keyword)
       * [Others](#others)
    * [Resources](#resources)
 
@@ -76,20 +77,80 @@ docker exec -it mysql-snippets_db_1 bash
 mysql -uroot -proot
 ```
 
-# MySQL
+or import the sql file.
+
+```
+mysql -uroot -p test_db < school.sql
+```
+
+Type the paswword `root` and you're done.
+
+# MySQL Keywords
+
+[keywords](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
+
+# MySQL Databases
 
 ```mysql
-show databases;
-use test_db;
+SHOW DATABASES;
+USE test_db;
 ```
 Run the MySQl queries from this file [students.sql](students.sql)
 
-## Test
 ```mysql
 SELECT * FROM students;
 ```
 
-# Examples of Common Queries
+Create a new database.
+
+```
+CREATE DATABASE test_db_1;
+```
+
+Delete a database. This will delete all the tables within the database.
+
+```
+DROP DATABASE test_db_1;
+```
+
+# MySQL Tables
+
+Show all tables in a database.
+
+```mysql
+SHOW TABLES;
+```
+
+```mysql
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| marks             |
+| students          |
++-------------------+
+2 rows in set (0.00 sec)
+```
+
+Delete a table. If you don't have a storage issue, it's best practise that you rename the table and after few weeks later when you are sure that there are no issues, then you can delete the table.
+
+```mysql
+DROP TABLE table_name;
+```
+
+Rename a table. Be aware that one or more application can be using the old table name.
+
+```mysql
+RENAME TABLE old_table_name TO new_table_name;
+```
+
+Copy a table.
+
+```mysql
+CREATE TABLE new_table_name TO old_table_name;
+INSERT new_table_name SELECT * FROM old_table_name;
+```
+
+
 
 ## Select students with first name Bob and postcode 23031.
 ```mysql
@@ -929,12 +990,42 @@ WHERE marks.mark BETWEEN 90 AND 100;
 
 ```
 
+# Use of Like keyword
+
+% - any sequence of zero, one, or multiple characters
+_ - matches a single character
+
+```mysql
+SHOW DATABASES LIKE 'test%';
+```
+
+```mysql
++------------------+
+| Database (test%) |
++------------------+
+| test_db          |
++------------------+
+1 row in set (0.00 sec)
+```
+
+```mysql
+SHOW DATABASES LIKE 'test\_d_';
+```
+
+```mysql
++---------------------+
+| Database (test\_d_) |
++---------------------+
+| test_db             |
++---------------------+
+1 row in set (0.00 sec)
+```
+
 ## Others
 
 ```mysql
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 ```
-
 
 # Resources
 1. [SQL](https://en.wikipedia.org/wiki/SQL)
