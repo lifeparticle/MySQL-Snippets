@@ -27,10 +27,14 @@
         * [LEFT JOIN](#left-join)
         * [RIGHT JOIN](#right-join)
         * [FULL OUTER JOIN](#full-outer-join)
-  * [Case](#case)
+  * [CASE](#case)
+  * [COUNT(*)](#count)
+  * [ROUND](#round)
+  * [MIN and MAX](#min-and-max)
+  * [REPLACE](#replace)
+  * [IN](#in)
   * [TODO](#todo)
-  * [TODO](#todo-1)
-* [Use of Like keyword](#use-of-like-keyword)
+* [Like](#like)
 * [Others](#others)
 * [Resources](#resources)
 
@@ -942,7 +946,7 @@ WHERE s.id is null;
 62 rows in set (0.00 sec)
 ```
 
-## Case
+## CASE
 
 ```mysql
 SELECT
@@ -952,8 +956,8 @@ SELECT
         WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
         WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
         WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
-ELSE "F"
-END AS grades
+        ELSE "F"
+    END AS grades
 FROM marks
 ORDER BY grades;
 ```
@@ -1015,8 +1019,8 @@ SELECT marks.mark,
         WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
         WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
         WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
-ELSE "F"
-END AS grades
+        ELSE "F"
+    END AS grades
 FROM marks
 ORDER BY grades;
 ```
@@ -1078,8 +1082,8 @@ SELECT students.id, marks.mark, marks.subject,
         WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
         WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
         WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
-ELSE "F"
-END AS grades
+        ELSE "F"
+     END AS grades
 FROM students
     JOIN marks ON students.id = marks.student_id
 ORDER BY grades;
@@ -1133,7 +1137,128 @@ ORDER BY grades;
 40 rows in set (0.00 sec)
 ```
 
-## TODO
+## `COUNT(*)`
+
+
+The `COUNT(*)` function returns the number of rows in a result set returned by a SELECT statement. It returns the number of rows including duplicate, non-NULL and NULL rows.
+
+```mysql
+SELECT
+    CASE
+        WHEN marks.mark >= 90 AND marks.mark <= 100 THEN "A"
+        WHEN marks.mark >= 80 AND marks.mark <= 89 THEN "B"
+        WHEN marks.mark >= 70 AND marks.mark <= 79 THEN "C"
+        WHEN marks.mark >= 60 AND marks.mark <= 69 THEN "D"
+        WHEN marks.mark >= 50 AND marks.mark <= 59 THEN "E"
+        ELSE "F"
+     END AS grades,
+COUNT(*) AS count
+FROM students
+    JOIN marks ON students.id = marks.student_id
+GROUP BY grades
+ORDER BY grades;
+```
+
+```mysql
++--------+-------+
+| grades | count |
++--------+-------+
+| A      |     6 |
+| B      |     7 |
+| C      |     9 |
+| D      |     3 |
+| E      |     8 |
+| F      |     7 |
++--------+-------+
+6 rows in set (0.00 sec)
+```
+
+## ROUND
+
+```mysql
+SELECT ROUND(SUM(mark), 2) FROM marks;
+```
+
+```mysql
++---------------------+
+| ROUND(SUM(mark), 2) |
++---------------------+
+|             2777.00 |
++---------------------+
+1 row in set (0.00 sec)
+```
+
+## MIN and MAX
+
+```mysql
+SELECT MAX(mark), MIN(mark) FROM marks;
+```
+
+```mysql
++-----------+-----------+
+| MAX(mark) | MIN(mark) |
++-----------+-----------+
+|       100 |         0 |
++-----------+-----------+
+1 row in set (0.00 sec)
+```
+
+## REPLACE
+
+```mysql
+SELECT subject, REPLACE(subject, 'Magic', 'Sorcery') FROM marks;
+```
+
+```mysql
++------------------------------+--------------------------------------+
+| subject                      | REPLACE(subject, 'Magic', 'Sorcery') |
++------------------------------+--------------------------------------+
+| Magic Survival               | Sorcery Survival                     |
+| Planetary Geography          | Planetary Geography                  |
+| Foreign Evolutionary Biology | Foreign Evolutionary Biology         |
+| Intergallactic Relations     | Intergallactic Relations             |
+| Grand Strategy               | Grand Strategy                       |
+| Foreign History              | Foreign History                      |
+| Alien Dance History          | Alien Dance History                  |
+| Foreign Social Skills        | Foreign Social Skills                |
+| Alien Social Skills          | Alien Social Skills                  |
+| Magic Music                  | Sorcery Music                        |
+| Alien Genealogy              | Alien Genealogy                      |
+| Magic Rituals                | Sorcery Rituals                      |
+| Planetary Ecology            | Planetary Ecology                    |
+| Military Law                 | Military Law                         |
+| Foreign Ethics               | Foreign Ethics                       |
+| Foreign Instrumental Music   | Foreign Instrumental Music           |
+| Foreign Services             | Foreign Services                     |
+| Alien Economics              | Alien Economics                      |
+| Alien Ethics                 | Alien Ethics                         |
+| Magic Arts                   | Sorcery Arts                         |
+| Alien Social Studies         | Alien Social Studies                 |
+| Foreign Political Sciences   | Foreign Political Sciences           |
+| Terraforming                 | Terraforming                         |
+| Transmutation                | Transmutation                        |
+| Space Travel                 | Space Travel                         |
+| Alien Medicine               | Alien Medicine                       |
+| Foreign Statistics           | Foreign Statistics                   |
+| Necromancy                   | Necromancy                           |
+| Magic Music                  | Sorcery Music                        |
+| Planetary History            | Planetary History                    |
+| Herbalism                    | Herbalism                            |
+| Dimensional Manipulation     | Dimensional Manipulation             |
+| Nutrition Recognition        | Nutrition Recognition                |
+| Foreign Pathology            | Foreign Pathology                    |
+| Foreign Arts                 | Foreign Arts                         |
+| Alien Bioengineering         | Alien Bioengineering                 |
+| Alien Physiology             | Alien Physiology                     |
+| Mathematics                  | Mathematics                          |
+| Foreign Arts                 | Foreign Arts                         |
+| Galactic History             | Galactic History                     |
+| Galactic History             | Galactic History                     |
++------------------------------+--------------------------------------+
+41 rows in set (0.00 sec)
+```
+
+## IN
 
 ```mysql
 
@@ -1153,7 +1278,7 @@ ORDER BY grades;
 
 ```
 
-# Use of Like keyword
+# Like
 
 * % - any sequence of zero, one, or multiple characters
 * _ - matches a single character
@@ -1199,3 +1324,5 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 6. [join](https://dev.mysql.com/doc/refman/8.0/en/join.html)
 7. [what-is-the-difference-between-inner-join-and-outer-join](https://stackoverflow.com/questions/38549/what-is-the-difference-between-inner-join-and-outer-join)
 8. [how-to-write-full-outer-join-in-mysql](https://www.xaprb.com/blog/2006/05/26/how-to-write-full-outer-join-in-mysql)
+9. [MySQL Tutorial for Beginners](https://www.youtube.com/watch?v=7S_tz1z_5bA)
+10. [COUNT(*)](https://www.mysqltutorial.org/mysql-count/#:~:text=The%20COUNT(*)%20function%20returns,non%2DNULL%20and%20NULL%20rows.)
