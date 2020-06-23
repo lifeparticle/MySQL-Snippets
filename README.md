@@ -34,8 +34,8 @@
   * [REPLACE](#replace)
   * [IN](#in)
   * [TODO](#todo)
-* [Like](#like)
-* [Others](#others)
+  * [Like](#like)
+* [Miscellaneous](#miscellaneous)
 * [Resources](#resources)
 
 # SQL
@@ -1278,7 +1278,7 @@ SELECT subject, REPLACE(subject, 'Magic', 'Sorcery') FROM marks;
 
 ```
 
-# Like
+## Like
 
 * % - any sequence of zero, one, or multiple characters
 * _ - matches a single character
@@ -1309,7 +1309,30 @@ SHOW DATABASES LIKE 'test\_d_';
 1 row in set (0.00 sec)
 ```
 
-# Others
+# Miscellaneous
+
+```mysql
+SELECT REPEAT('* ', 1);
+SELECT REPEAT('* ', 2);
+SELECT REPEAT('* ', 3);
+SELECT REPEAT('* ', 4);
+SELECT REPEAT('* ', 5);
+SELECT REPEAT('* ', 6);
+SELECT REPEAT('* ', 7);
+SELECT REPEAT('* ', 8);
+SELECT REPEAT('* ', 9);
+SELECT REPEAT('* ', 10);
+SELECT REPEAT('* ', 11);
+SELECT REPEAT('* ', 12);
+SELECT REPEAT('* ', 13);
+SELECT REPEAT('* ', 14);
+SELECT REPEAT('* ', 15);
+SELECT REPEAT('* ', 16);
+SELECT REPEAT('* ', 17);
+SELECT REPEAT('* ', 18);
+SELECT REPEAT('* ', 19);
+SELECT REPEAT('* ', 20);
+```
 
 ```mysql
 SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
@@ -1326,3 +1349,4 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 8. [how-to-write-full-outer-join-in-mysql](https://www.xaprb.com/blog/2006/05/26/how-to-write-full-outer-join-in-mysql)
 9. [MySQL Tutorial for Beginners](https://www.youtube.com/watch?v=7S_tz1z_5bA)
 10. [COUNT(*)](https://www.mysqltutorial.org/mysql-count/#:~:text=The%20COUNT(*)%20function%20returns,non%2DNULL%20and%20NULL%20rows.)
+11. [sql](https://www.hackerrank.com/domains/sql)
