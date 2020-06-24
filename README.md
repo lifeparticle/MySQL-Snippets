@@ -32,9 +32,11 @@
   * [ROUND](#round)
   * [MIN and MAX](#min-and-max)
   * [REPLACE](#replace)
+  * [LIMIT](#limit)
+  * [Find duplicates](#find-duplicates)
   * [IN](#in)
-  * [TODO](#todo)
   * [Like](#like)
+  * [TODO](#todo)
 * [Miscellaneous](#miscellaneous)
 * [Resources](#resources)
 
@@ -1258,23 +1260,76 @@ SELECT subject, REPLACE(subject, 'Magic', 'Sorcery') FROM marks;
 41 rows in set (0.00 sec)
 ```
 
+## LIMIT
+
+```mysql
+SELECT * FROM marks
+LIMIT 1;
+```
+
+```mysql
++----+------------+------+----------------+
+| id | student_id | mark | subject        |
++----+------------+------+----------------+
+|  1 |          3 |   23 | Magic Survival |
++----+------------+------+----------------+
+1 row in set (0.00 sec)
+```
+
+LIMIT x, y means return y rows, starting from xth row.
+
+```mysql
+SELECT * FROM marks
+LIMIT 0, 5;
+```
+
+```mysql
++----+------------+------+------------------------------+
+| id | student_id | mark | subject                      |
++----+------------+------+------------------------------+
+|  1 |          3 |   23 | Magic Survival               |
+|  2 |          4 |   56 | Planetary Geography          |
+|  3 |          9 |   77 | Foreign Evolutionary Biology |
+|  4 |          6 |   83 | Intergallactic Relations     |
+|  5 |          9 |   45 | Grand Strategy               |
++----+------------+------+------------------------------+
+5 rows in set (0.01 sec)
+```
+
+## Find duplicates
+
+```mysql
+SELECT subject, count(*) FROM marks
+GROUP BY subject
+HAVING count(*) > 1;
+```
+
+```mysql
++------------------+----------+
+| subject          | count(*) |
++------------------+----------+
+| Magic Music      |        2 |
+| Foreign Arts     |        2 |
+| Galactic History |        2 |
++------------------+----------+
+3 rows in set (0.00 sec)
+```
+
 ## IN
 
 ```mysql
-
+SELECT * FROM marks
+WHERE subject IN ('Magic Music');
 ```
 
 ```mysql
-
-```
-
-## TODO
-
-```mysql
-
-```
-
-```mysql
++----+------------+------+-------------+
+| id | student_id | mark | subject     |
++----+------------+------+-------------+
+| 10 |          4 |   76 | Magic Music |
+| 29 |          6 |    0 | Magic Music |
++----+------------+------+-------------+
+2 rows in set (0.01 sec)
 
 ```
 
@@ -1307,6 +1362,16 @@ SHOW DATABASES LIKE 'test\_d_';
 | test_db             |
 +---------------------+
 1 row in set (0.00 sec)
+```
+
+## TODO
+
+```mysql
+
+```
+
+```mysql
+
 ```
 
 # Miscellaneous
