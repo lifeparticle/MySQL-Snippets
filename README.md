@@ -1338,6 +1338,8 @@ WHERE subject IN ('Magic Music');
 * % - any sequence of zero, one, or multiple characters
 * _ - matches a single character
 
+To match `%` or `_` use a backslash as a prefix.
+
 ```mysql
 SHOW DATABASES LIKE 'test%';
 ```
@@ -1362,6 +1364,16 @@ SHOW DATABASES LIKE 'test\_d_';
 | test_db             |
 +---------------------+
 1 row in set (0.00 sec)
+```
+
+## Output query results to a file
+
+```mysql
+
+```
+
+```mysql
+
 ```
 
 ## TODO
