@@ -1,44 +1,45 @@
-* [SQL](#sql)
-* [MySQL](#mysql)
-* [Docker Setup](#docker-setup)
-* [MySQL Keywords](#mysql-keywords)
-* [MySQL Databases](#mysql-databases)
-* [MySQL Tables](#mysql-tables)
-  * [Select students with first name Bob and postcode 23031.](#select-students-with-first-name-bob-and-postcode-23031)
-  * [Select all city names and postcodes.](#select-all-city-names-and-postcodes)
-  * [Select unique first names with even id.](#select-unique-first-names-with-even-id)
-  * [Find duplicate postcodes.](#find-duplicate-postcodes)
-  * [Find the shortest and longest first names ordered alphabetically.](#find-the-shortest-and-longest-first-names-ordered-alphabetically)
-  * [Find unique first names starting with vowels.](#find-unique-first-names-starting-with-vowels)
-  * [Find unique first names that ends with vowels.](#find-unique-first-names-that-ends-with-vowels)
-  * [Find unique first names that starts or ends with vowels.](#find-unique-first-names-that-starts-or-ends-with-vowels)
-  * [Find unique first names that does not starts with vowels.](#find-unique-first-names-that-does-not-starts-with-vowels)
-  * [Find unique first names that does not ends with vowels.](#find-unique-first-names-that-does-not-ends-with-vowels)
-  * [Find unique first names that does not starts or ends with vowels.](#find-unique-first-names-that-does-not-starts-or-ends-with-vowels)
-  * [Find unique first names that does not starts and ends with vowels.](#find-unique-first-names-that-does-not-starts-and-ends-with-vowels)
-  * [Use of LEFT and RIGHT](#use-of-left-and-right)
-  * [Ascending order](#ascending-order)
-  * [GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN](#group-by-group_concat-floor-avg-with-join)
-  * [IF with JOIN](#if-with-join)
-  * [BETWEEN with JOIN](#between-with-join)
-  * [Joining tables](#joining-tables)
-     * [INNER JOIN](#inner-join)
-     * [OUTER JOIN](#outer-join)
-        * [LEFT JOIN](#left-join)
-        * [RIGHT JOIN](#right-join)
-        * [FULL OUTER JOIN](#full-outer-join)
-  * [CASE](#case)
-  * [COUNT(*)](#count)
-  * [ROUND](#round)
-  * [MIN and MAX](#min-and-max)
-  * [REPLACE](#replace)
-  * [LIMIT](#limit)
-  * [Find duplicates](#find-duplicates)
-  * [IN](#in)
-  * [Like](#like)
-  * [TODO](#todo)
-* [Miscellaneous](#miscellaneous)
-* [Resources](#resources)
+ * [SQL](#sql)
+ * [MySQL](#mysql)
+ * [Docker Setup](#docker-setup)
+ * [MySQL Keywords](#mysql-keywords)
+ * [MySQL Databases](#mysql-databases)
+ * [MySQL Tables](#mysql-tables)
+    * [SELECT with AND](#select-with-and)
+    * [SELECT multiple fields](#select-multiple-fields)
+    * [SELECT with DISTINCT and MOD](#select-with-distinct-and-mod)
+    * [Count duplicates](#count-duplicates)
+    * [Find the shortest and longest strings ordered alphabetically](#find-the-shortest-and-longest-strings-ordered-alphabetically)
+    * [Find unique strings that starts with vowels](#find-unique-strings-that-starts-with-vowels)
+    * [Find unique strings that ends with vowels](#find-unique-strings-that-ends-with-vowels)
+    * [Find unique strings that starts or ends with vowels](#find-unique-strings-that-starts-or-ends-with-vowels)
+    * [Find unique strings that does not starts with vowels](#find-unique-strings-that-does-not-starts-with-vowels)
+    * [Find unique strings that does not ends with vowels](#find-unique-strings-that-does-not-ends-with-vowels)
+    * [Find unique strings that does not starts or ends with vowels](#find-unique-strings-that-does-not-starts-or-ends-with-vowels)
+    * [Find unique strings that does not starts and ends with vowels](#find-unique-strings-that-does-not-starts-and-ends-with-vowels)
+    * [LEFT and RIGHT](#left-and-right)
+    * [Ascending order](#ascending-order)
+    * [GROUP BY, GROUP_CONCAT, FLOOR, AVG with JOIN](#group-by-group_concat-floor-avg-with-join)
+    * [IF with JOIN](#if-with-join)
+    * [BETWEEN with JOIN](#between-with-join)
+    * [Joining tables](#joining-tables)
+       * [INNER JOIN](#inner-join)
+       * [OUTER JOIN](#outer-join)
+          * [LEFT JOIN](#left-join)
+          * [RIGHT JOIN](#right-join)
+          * [FULL OUTER JOIN](#full-outer-join)
+    * [CASE](#case)
+    * [COUNT(*)](#count)
+    * [ROUND](#round)
+    * [MIN and MAX](#min-and-max)
+    * [REPLACE](#replace)
+    * [LIMIT](#limit)
+    * [Find duplicates](#find-duplicates)
+    * [IN](#in)
+    * [Like](#like)
+    * [Output query results to a file](#output-query-results-to-a-file)
+    * [TODO](#todo)
+ * [Miscellaneous](#miscellaneous)
+ * [Resources](#resources)
 
 # SQL
 SQL, "sequel"; Structured Query Language) is a domain-specific language used in programming and designed for managing data held in a relational database management system (RDBMS), or for stream processing in a relational data stream management system (RDSMS). It is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables.
@@ -125,7 +126,7 @@ Delete a table. If you don't have a storage issue, it's best practise that you r
 DROP TABLE table_name;
 ```
 
-Rename a table. Be aware that one or more application can be using the old table name.
+Rename a table. Be aware that one or more application can be using the old table name
 
 ```mysql
 RENAME TABLE old_table_name TO new_table_name;
@@ -139,7 +140,7 @@ INSERT new_table_name SELECT * FROM old_table_name;
 ```
 
 
-## Select students with first name Bob and postcode 23031.
+## SELECT with AND
 ```mysql
 SELECT * FROM students WHERE first_name='Bob' and postcode=23031;
 ```
@@ -154,7 +155,7 @@ SELECT * FROM students WHERE first_name='Bob' and postcode=23031;
 2 rows in set (0.00 sec)
 ```
 
-## Select all city names and postcodes.
+## SELECT multiple fields
 ```mysql
 SELECT city, postcode FROM students;
 ```
@@ -197,7 +198,7 @@ SELECT city, postcode FROM students;
 30 rows in set (0.00 sec)
 ```
 
-## Select unique first names with even id.
+## SELECT with DISTINCT and MOD
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 ```
@@ -227,7 +228,7 @@ SELECT DISTINCT first_name FROM students WHERE MOD(postcode, 2) = 0;
 17 rows in set (0.00 sec)
 ```
 
-## Find duplicate postcodes.
+## Count duplicates
 ```mysql
 SELECT (COUNT(postcode)-COUNT(DISTINCT(postcode))) FROM students;
 ```
@@ -241,7 +242,7 @@ SELECT (COUNT(postcode)-COUNT(DISTINCT(postcode))) FROM students;
 1 row in set (0.00 sec)
 ```
 
-## Find the shortest and longest first names ordered alphabetically.
+## Find the shortest and longest strings ordered alphabetically
 
 ```mysql
 SELECT first_name, LENGTH(first_name) FROM students ORDER BY LENGTH(first_name) DESC, first_name ASC LIMIT 1;
@@ -269,7 +270,7 @@ SELECT first_name, LENGTH(first_name) FROM students ORDER BY LENGTH(first_name) 
 1 row in set (0.00 sec)
 ```
 
-## Find unique first names starting with vowels.
+## Find unique strings that starts with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou]';
@@ -285,7 +286,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou]';
 2 rows in set (0.01 sec)
 ```
 
-## Find unique first names that ends with vowels.
+## Find unique strings that ends with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '[aeiou]$';
@@ -305,7 +306,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '[aeiou]$';
 6 rows in set (0.00 sec)
 ```
 
-## Find unique first names that starts or ends with vowels.
+## Find unique strings that starts or ends with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou].*[aeiou]$';
@@ -320,7 +321,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name REGEXP '^[aeiou].*[aei
 1 row in set (0.00 sec)
 ```
 
-## Find unique first names that does not starts with vowels.
+## Find unique strings that does not starts with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]';
@@ -362,7 +363,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]';
 ```
 
 
-## Find unique first names that does not ends with vowels.
+## Find unique strings that does not ends with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '[aeiou]$';
@@ -399,7 +400,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '[aeiou]$';
 23 rows in set (0.01 sec)
 ```
 
-## Find unique first names that does not starts or ends with vowels.
+## Find unique strings that does not starts or ends with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou].*[aeiou]$';
@@ -441,7 +442,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou].*
 28 rows in set (0.00 sec)
 ```
 
-## Find unique first names that does not starts and ends with vowels.
+## Find unique strings that does not starts and ends with vowels
 
 ```mysql
 SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]' AND first_name NOT REGEXP '[aeiou]$';
@@ -477,7 +478,7 @@ SELECT DISTINCT first_name FROM students WHERE first_name NOT REGEXP '^[aeiou]' 
 22 rows in set (0.00 sec)
 ```
 
-## Use of LEFT and RIGHT
+## LEFT and RIGHT
 
 ```mysql
 SELECT first_name, LEFT(first_name, 3), RIGHT(first_name, 3) FROM  students;
