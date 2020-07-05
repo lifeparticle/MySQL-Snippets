@@ -1,6 +1,6 @@
 https://www.hackerrank.com/challenges/binary-search-tree-1/problem
 
-```
+```mysql
 SELECT n,
 CASE
     WHEN p IS null THEN "Root"
@@ -13,7 +13,7 @@ ORDER BY n;
 
 https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
-```
+```mysql
 SET @row := -1;
     SELECT ROUND(AVG(val), 4)
 FROM
@@ -27,7 +27,7 @@ WHERE res.row = FLOOR(@row / 2) OR res.row = CEIL(@row / 2)
 
 https://www.hackerrank.com/challenges/occupations/submissions/code/166421846
 
-```
+```mysql
 set @r1=0, @r2=0, @r3=0, @r4=0;
 SELECT MIN(Doctor),
     MIN(Professor),
@@ -51,7 +51,7 @@ GROUP BY RowNumber
 
 https://www.hackerrank.com/challenges/full-score/submissions/code/165153512
 
-```
+```mysql
 SELECT Hackers.hacker_id,
     Hackers.name
 FROM Hackers
@@ -69,7 +69,7 @@ ORDER BY COUNT(Submissions.challenge_id) DESC, Hackers.hacker_id ASC;
 
 https://www.hackerrank.com/challenges/the-report/submissions/code/165045045
 
-```
+```mysql
 SELECT IF(Grades.Grade < 8, NULL, Students.name),
 Grades.Grade,
 Students.marks
