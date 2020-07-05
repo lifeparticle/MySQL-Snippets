@@ -55,7 +55,8 @@ https://www.hackerrank.com/challenges/full-score/submissions/code/165153512
 SELECT Hackers.hacker_id,
     Hackers.name
 FROM Hackers
-JOIN Submissions ON Submissions.hacker_id = Hackers.hacker_id
+JOIN Submissions ON
+    Submissions.hacker_id = Hackers.hacker_id
 JOIN Challenges ON
     Challenges.challenge_id = Submissions.challenge_id
 JOIN Difficulty ON
