@@ -1,4 +1,4 @@
-https://www.hackerrank.com/challenges/binary-search-tree-1/problem
+1. https://www.hackerrank.com/challenges/binary-search-tree-1/problem
 
 ```mysql
 SELECT n,
