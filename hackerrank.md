@@ -11,7 +11,7 @@ FROM BST
 ORDER BY n;
 ```
 
-https://www.hackerrank.com/challenges/weather-observation-station-20/problem
+2. https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
 ```mysql
 SET @row := -1;
@@ -25,7 +25,7 @@ FROM
 WHERE res.row = FLOOR(@row / 2) OR res.row = CEIL(@row / 2)
 ```
 
-https://www.hackerrank.com/challenges/occupations/submissions/code/166421846
+3. https://www.hackerrank.com/challenges/occupations/submissions/code/166421846
 
 ```mysql
 set @r1=0, @r2=0, @r3=0, @r4=0;
@@ -49,7 +49,7 @@ FROM
 GROUP BY RowNumber
 ```
 
-https://www.hackerrank.com/challenges/full-score/submissions/code/165153512
+4. https://www.hackerrank.com/challenges/full-score/submissions/code/165153512
 
 ```mysql
 SELECT Hackers.hacker_id,
@@ -67,7 +67,7 @@ HAVING COUNT(Submissions.challenge_id) > 1
 ORDER BY COUNT(Submissions.challenge_id) DESC, Hackers.hacker_id ASC;
 ```
 
-https://www.hackerrank.com/challenges/the-report/submissions/code/165045045
+5. https://www.hackerrank.com/challenges/the-report/submissions/code/165045045
 
 ```mysql
 SELECT IF(Grades.Grade < 8, NULL, Students.name),
