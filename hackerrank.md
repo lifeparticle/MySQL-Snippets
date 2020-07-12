@@ -78,3 +78,7 @@ JOIN Grades ON
     Students.marks BETWEEN Grades.min_mark AND Grades.max_mark
 ORDER BY Grades.Grade DESC, Students.name ASC, Students.marks ASC;
 ```
+6. https://www.hackerrank.com/challenges/placements/problem
+
+```mysql
+```
