@@ -82,3 +82,8 @@ ORDER BY Grades.Grade DESC, Students.name ASC, Students.marks ASC;
 
 ```mysql
 ```
+
+7. https://www.hackerrank.com/challenges/sql-projects/problem
+
+```mysql
+```
