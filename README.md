@@ -1,3 +1,6 @@
+[How to Run MySQL Using Docker](https://towardsdatascience.com/how-to-run-mysql-using-docker-ed4cebcd90e4?source=friends_link&sk=2ec5b230e4c0bcffd485b9a3d924d64a)
+ 
+ 
  * [SQL](#sql)
  * [MySQL](#mysql)
  * [Docker Setup](#docker-setup)
