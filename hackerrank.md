@@ -81,6 +81,12 @@ ORDER BY Grades.Grade DESC, Students.name ASC, Students.marks ASC;
 6. https://www.hackerrank.com/challenges/placements/problem
 
 ```mysql
+SELECT s.name FROM students AS s
+JOIN packages AS p ON s.id = p.id
+JOIN friends AS f ON s.id = f.id
+JOIN packages AS fp ON f.friend_id = fp.id
+WHERE fp.salary > p.salary
+ORDER BY fp.salary ASC;
 ```
 
 7. https://www.hackerrank.com/challenges/sql-projects/problem
