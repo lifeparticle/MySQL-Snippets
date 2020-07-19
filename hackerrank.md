@@ -99,3 +99,39 @@ WHERE start_date < end_date
 GROUP BY start_date
 ORDER BY DATEDIFF(MIN(end_date), start_date), start_date;
 ```
+
+8. https://www.hackerrank.com/challenges/harry-potter-and-wands/problem
+
+```mysql
+
+```
+
+9. https://www.hackerrank.com/challenges/the-company/problem
+
+```mysql
+
+```
+
+10. https://www.hackerrank.com/challenges/challenges/problem
+
+```mysql
+
+```
+
+11. https://www.hackerrank.com/challenges/contest-leaderboard/problem
+
+```mysql
+
+```
+
+12. https://www.hackerrank.com/challenges/symmetric-pairs/problem
+
+```mysql
+
+```
+
+13. https://www.hackerrank.com/challenges/print-prime-numbers/problem
+
+```mysql
+
+```
