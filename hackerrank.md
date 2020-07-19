@@ -115,7 +115,13 @@ ORDER BY DATEDIFF(MIN(end_date), start_date), start_date;
 10. https://www.hackerrank.com/challenges/challenges/problem
 
 ```mysql
-
+SELECT h.hacker_id, h.name, COUNT(c.challenge_id) AS challenges_created FROM hackers AS h
+JOIN challenges AS c ON h.hacker_id = c.hacker_id
+GROUP BY h.hacker_id, h.name
+HAVING challenges_created = (SELECT COUNT(c1.challenge_id) FROM challenges AS c1 GROUP BY c1.hacker_id ORDER BY COUNT(c.challenge_id) DESC LIMIT 1)
+OR
+challenges_created IN (SELECT c3.z FROM (SELECT COUNT(c2.challenge_id) AS z FROM challenges AS c2 GROUP BY c2.hacker_id) AS c3 GROUP BY c3.z HAVING COUNT(c3.z) = 1)
+ORDER BY challenges_created DESC, h.hacker_id
 ```
 
 11. https://www.hackerrank.com/challenges/contest-leaderboard/problem
