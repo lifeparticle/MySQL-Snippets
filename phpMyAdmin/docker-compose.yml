@@ -12,3 +12,12 @@ services:
       - "3307:3306"
     volumes:
       - $HOME/Desktop/MySQL-Snippets/school.sql:/school.sql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
