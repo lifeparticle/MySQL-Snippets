@@ -11,7 +11,7 @@ services:
     ports:
       - "3308:3306"
     volumes:
-      - $HOME/Desktop/MySQL-Snippets/school.sql:/school.sql
+      - $HOME/Desktop/phpMyAdmin/school.sql:/school.sql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
