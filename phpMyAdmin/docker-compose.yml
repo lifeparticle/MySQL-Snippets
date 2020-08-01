@@ -10,8 +10,6 @@ services:
       MYSQL_DATABASE: test_db
     ports:
       - "3308:3306"
-    volumes:
-      - $HOME/Desktop/phpMyAdmin/school.sql:/school.sql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
