@@ -48,7 +48,6 @@
     * [IN](#in)
     * [Like](#like)
     * [Output query results to a file](#output-query-results-to-a-file)
-    * [TODO](#todo)
  * [Miscellaneous](#miscellaneous)
  * [Resources](#resources)
 
@@ -1379,16 +1378,6 @@ SHOW DATABASES LIKE 'test\_d_';
 ```
 
 ## Output query results to a file
-
-```mysql
-
-```
-
-```mysql
-
-```
-
-## TODO
 
 ```mysql
 
