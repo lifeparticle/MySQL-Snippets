@@ -75,6 +75,26 @@ docker exec -it mysql-snippets_db_1 bash
 
 [Keywords](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
 
+# Data types
+
+| No  | Name          | Example | Doc       |
+| --- | ------------- | ------- | --------- |
+| 1   | Numeric       |         | [link][1] |
+| 2   | Date and Time |         | [link][2] |
+| 3   | String        |         | [link][3] |
+| 5   | Spatial       |         | [link][4] |
+| 6   | JSON          |         | [link][5] |
+
+<!-- doc_links starts -->
+
+[1]: https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html
+[2]: https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html
+[3]: https://dev.mysql.com/doc/refman/8.0/en/string-types.html
+[4]: https://dev.mysql.com/doc/refman/8.0/en/spatial-types.html
+[5]: https://dev.mysql.com/doc/refman/8.0/en/json.html
+
+<!-- doc_links ends -->
+
 # MySQL Databases
 
 Run the MySQl queries from this file [students.sql](students.sql) from the MySQL CLI.
