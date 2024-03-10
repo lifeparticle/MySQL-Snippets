@@ -1448,3 +1448,4 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 9. [MySQL Tutorial for Beginners](https://www.youtube.com/watch?v=7S_tz1z_5bA)
 10. [COUNT(*)](https://www.mysqltutorial.org/mysql-count/#:~:text=The%20COUNT(*)%20function%20returns,non%2DNULL%20and%20NULL%20rows.)
 11. [sql](https://www.hackerrank.com/domains/sql)
+12. [Planetscale courses](https://planetscale.com/learn/courses/database-scaling/introduction/course-introduction)
