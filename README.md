@@ -1438,8 +1438,8 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 
 # Resources
 1. [SQL](https://en.wikipedia.org/wiki/SQL)
-2.  [MySQL](https://en.wikipedia.org/wiki/MySQL)
-3.  [filldb](http://filldb.info/)
+2. [MySQL](https://en.wikipedia.org/wiki/MySQL)
+3. [filldb](http://filldb.info/)
 4. [mockaroo](https://www.mockaroo.com/)
 5. [fantasynamegenerators](https://www.fantasynamegenerators.com/school-subjects.php)
 6. [join](https://dev.mysql.com/doc/refman/8.0/en/join.html)
@@ -1449,3 +1449,4 @@ SELECT elt(locate(operation, "+-*/"), a+b, a-b, a*b, a/b) = c
 10. [COUNT(*)](https://www.mysqltutorial.org/mysql-count/#:~:text=The%20COUNT(*)%20function%20returns,non%2DNULL%20and%20NULL%20rows.)
 11. [sql](https://www.hackerrank.com/domains/sql)
 12. [Planetscale courses](https://planetscale.com/learn/courses/database-scaling/introduction/course-introduction)
+13. [File Space Management](https://dev.mysql.com/doc/refman/8.3/en/innodb-file-space.html)
